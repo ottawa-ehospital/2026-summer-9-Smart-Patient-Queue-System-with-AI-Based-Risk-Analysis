@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1450" height="900" viewBox="0 0 1450 900">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2F5F7A"/>
+    </marker>
+    <style>
+      .page { fill: #f6f7f9; }
+      .lane { fill: #ffffff; stroke: #d7dde8; stroke-width: 2; }
+      .lane-title { font: 700 21px Arial, sans-serif; fill: #1f2937; }
+      .box { fill: #f8fafc; stroke: #b9c4d4; stroke-width: 2; rx: 12; }
+      .agent { fill: #e8f1f8; stroke: #7aa3bd; stroke-width: 2; rx: 12; }
+      .db { fill: #fff7ed; stroke: #e8a66b; stroke-width: 2; rx: 12; }
+      .alert { fill: #fff1f2; stroke: #ef8a92; stroke-width: 2; rx: 12; }
+      .text { font: 16px Arial, sans-serif; fill: #263238; }
+      .small { font: 13px Arial, sans-serif; fill: #5f6b7a; }
+      .caption { font: 700 15px Arial, sans-serif; fill: #263238; }
+      .arrow { stroke: #2F5F7A; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .dash { stroke-dasharray: 7 6; }
+    </style>
+  </defs>
+
+  <rect class="page" x="0" y="0" width="1450" height="900"/>
+
+  <text x="48" y="52" style="font: 800 30px Arial, sans-serif; fill: #111827;">CareFlow Global Workflow</text>
+  <text x="48" y="82" class="small">Patient app, FastAPI backend agents, E-hospital database API, and doctor web dashboard</text>
+
+  <rect class="lane" x="40" y="120" width="305" height="710" rx="14"/>
+  <rect class="lane" x="382" y="120" width="355" height="710" rx="14"/>
+  <rect class="lane" x="775" y="120" width="320" height="710" rx="14"/>
+  <rect class="lane" x="1132" y="120" width="278" height="710" rx="14"/>
+
+  <text x="70" y="158" class="lane-title">Patient App</text>
+  <text x="412" y="158" class="lane-title">FastAPI Backend + AI Agents</text>
+  <text x="805" y="158" class="lane-title">E-hospital Database API</text>
+  <text x="1162" y="158" class="lane-title">Doctor Web Dashboard</text>
+
+  <!-- Patient app -->
+  <rect class="box" x="70" y="195" width="245" height="96" rx="12"/>
+  <text x="92" y="226" class="caption">1. Patient Check-in</text>
+  <text x="92" y="252" class="small">Patient ID, name, age, gender</text>
+  <text x="92" y="274" class="small">symptoms, medical history</text>
+
+  <rect class="box" x="70" y="365" width="245" height="92" rx="12"/>
+  <text x="92" y="396" class="caption">2. Patient Status</text>
+  <text x="92" y="422" class="small">Shows queue position, patients</text>
+  <text x="92" y="444" class="small">ahead, and estimated wait</text>
+
+  <rect class="box" x="70" y="590" width="245" height="106" rx="12"/>
+  <text x="92" y="621" class="caption">3. Feedback + Condition</text>
+  <text x="92" y="647" class="small">Rating, feedback message,</text>
+  <text x="92" y="669" class="small">condition update after check-in</text>
+
+  <!-- Backend agents -->
+  <rect class="agent" x="415" y="188" width="290" height="94" rx="12"/>
+  <text x="438" y="220" class="caption">Registration Handler</text>
+  <text x="438" y="246" class="small">Finds or creates patient record</text>
+  <text x="438" y="268" class="small">using Patient ID</text>
+
+  <rect class="agent" x="415" y="320" width="290" height="118" rx="12"/>
+  <text x="438" y="352" class="caption">Risk Analysis Agent</text>
+  <text x="438" y="378" class="small">DeepSeek + CTAS rule engine</text>
+  <text x="438" y="400" class="small">Generates CTAS level, score,</text>
+  <text x="438" y="422" class="small">summary, reasoning, action</text>
+
+  <rect class="agent" x="415" y="480" width="290" height="110" rx="12"/>
+  <text x="438" y="512" class="caption">Queue Prioritization Agent</text>
+  <text x="438" y="538" class="small">Places patient into Emergency,</text>
+  <text x="438" y="560" class="small">Normal, or Non-Urgent queue</text>
+  <text x="438" y="582" class="small">by CTAS level and check-in time</text>
+
+  <rect class="alert" x="415" y="640" width="290" height="116" rx="12"/>
+  <text x="438" y="672" class="caption">Feedback Alert Agent</text>
+  <text x="438" y="698" class="small">Analyzes feedback and condition</text>
+  <text x="438" y="720" class="small">updates using AI plus safety</text>
+  <text x="438" y="742" class="small">keywords/rules for urgent alerts</text>
+
+  <!-- Database -->
+  <rect class="db" x="805" y="185" width="260" height="92" rx="12"/>
+  <text x="828" y="217" class="caption">patients_registration</text>
+  <text x="828" y="243" class="small">Patient ID, name, DOB, gender,</text>
+  <text x="828" y="265" class="small">contact information</text>
+
+  <rect class="db" x="805" y="315" width="260" height="120" rx="12"/>
+  <text x="828" y="347" class="caption">healthcare_records</text>
+  <text x="828" y="373" class="small">Visit record, symptoms, CTAS,</text>
+  <text x="828" y="395" class="small">risk score, queue, status,</text>
+  <text x="828" y="417" class="small">summary, action, timestamps</text>
+
+  <rect class="db" x="805" y="475" width="260" height="92" rx="12"/>
+  <text x="828" y="507" class="caption">medical_history</text>
+  <text x="828" y="533" class="small">Patient-reported history stored</text>
+  <text x="828" y="555" class="small">in notes for longitudinal context</text>
+
+  <rect class="db" x="805" y="640" width="260" height="116" rx="12"/>
+  <text x="828" y="672" class="caption">patient_feedback</text>
+  <text x="828" y="698" class="small">record_id, rating, feedback,</text>
+  <text x="828" y="720" class="small">condition update, alert flag,</text>
+  <text x="828" y="742" class="small">alert reason, created time</text>
+
+  <!-- Doctor dashboard -->
+  <rect class="box" x="1162" y="210" width="218" height="100" rx="12"/>
+  <text x="1185" y="242" class="caption">Live Queue Board</text>
+  <text x="1185" y="268" class="small">Emergency, Normal,</text>
+  <text x="1185" y="290" class="small">Non-Urgent queues</text>
+
+  <rect class="box" x="1162" y="360" width="218" height="100" rx="12"/>
+  <text x="1185" y="392" class="caption">Staff Actions</text>
+  <text x="1185" y="418" class="small">Start consultation</text>
+  <text x="1185" y="440" class="small">Mark as completed</text>
+
+  <rect class="alert" x="1162" y="520" width="218" height="102" rx="12"/>
+  <text x="1185" y="552" class="caption">Feedback Alerts</text>
+  <text x="1185" y="578" class="small">AI alert cards for staff</text>
+  <text x="1185" y="600" class="small">review and escalation</text>
+
+  <!-- Arrows -->
+  <path class="arrow" d="M315 243 C350 243, 375 235, 415 235"/>
+  <path class="arrow" d="M560 282 L560 320"/>
+  <path class="arrow" d="M705 235 C750 235, 760 230, 805 230"/>
+  <path class="arrow" d="M705 378 C750 378, 760 375, 805 375"/>
+  <path class="arrow" d="M705 535 C745 520, 760 520, 805 520"/>
+  <path class="arrow" d="M560 438 L560 480"/>
+  <path class="arrow" d="M705 535 C865 535, 1005 290, 1162 260"/>
+  <path class="arrow" d="M415 535 C360 535, 372 411, 315 411"/>
+  <path class="arrow" d="M315 643 C365 643, 375 698, 415 698"/>
+  <path class="arrow" d="M705 698 C750 698, 760 698, 805 698"/>
+  <path class="arrow" d="M1065 698 C1108 698, 1116 570, 1162 570"/>
+  <path class="arrow" d="M1271 460 C1271 505, 1095 385, 1065 385"/>
+  <path class="arrow dash" d="M1065 375 C1102 375, 1120 410, 1162 410"/>
+
+</svg>

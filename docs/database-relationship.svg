@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2F5F7A"/>
+    </marker>
+    <style>
+      .bg { fill: #f6f7f9; }
+      .title { font: 800 30px Arial, sans-serif; fill: #111827; }
+      .subtitle { font: 15px Arial, sans-serif; fill: #5f6b7a; }
+      .table { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; rx: 14; }
+      .existing { fill: #eef6ff; stroke: #7aa3bd; stroke-width: 2; rx: 14; }
+      .custom { fill: #fff7ed; stroke: #e8a66b; stroke-width: 2; rx: 14; }
+      .feedback { fill: #fff1f2; stroke: #ef8a92; stroke-width: 2; rx: 14; }
+      .table-title { font: 700 20px Arial, sans-serif; fill: #1f2937; }
+      .field { font: 15px Arial, sans-serif; fill: #374151; }
+      .key { font: 700 15px Arial, sans-serif; fill: #1F5F8B; }
+      .note { font: 14px Arial, sans-serif; fill: #6b7280; }
+      .arrow { stroke: #2F5F7A; stroke-width: 2.7; fill: none; marker-end: url(#arrow); }
+      .label { font: 700 14px Arial, sans-serif; fill: #2F5F7A; }
+      .legend { font: 14px Arial, sans-serif; fill: #374151; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="720"/>
+  <text x="55" y="58" class="title">CareFlow Database Relationship</text>
+  <text x="55" y="86" class="subtitle">patient_id connects patient-level tables; record_id connects visit-level records and feedback.</text>
+
+  <!-- Existing E-hospital tables -->
+  <rect class="existing" x="70" y="150" width="310" height="180" rx="14"/>
+  <text x="95" y="188" class="table-title">patients_registration</text>
+  <text x="95" y="225" class="key">patient_id</text>
+  <text x="95" y="252" class="field">name</text>
+  <text x="95" y="279" class="field">dob / age</text>
+  <text x="95" y="306" class="field">gender</text>
+  <text x="95" y="355" class="note">Existing E-hospital patient identity table</text>
+
+  <rect class="existing" x="70" y="410" width="310" height="170" rx="14"/>
+  <text x="95" y="448" class="table-title">medical_history</text>
+  <text x="95" y="485" class="key">patient_id</text>
+  <text x="95" y="539" class="field">notes (Medical History)</text>
+  <text x="95" y="608" class="note">Existing table linked by patient_id</text>
+
+  <!-- Our project visit table -->
+  <rect class="custom" x="525" y="230" width="340" height="230" rx="14"/>
+  <text x="550" y="268" class="table-title">healthcare_records</text>
+  <text x="550" y="305" class="key">record_id</text>
+  <text x="550" y="332" class="key">patient_id</text>
+  <text x="550" y="359" class="field">symptoms</text>
+  <text x="550" y="386" class="field">ctas_urgency_level, risk_score</text>
+  <text x="550" y="413" class="field">queue_name, status</text>
+  <text x="550" y="440" class="field">clinical_summary, recommended_action</text>
+  <text x="550" y="489" class="note">One patient_id can have many visit records</text>
+
+  <!-- Feedback table -->
+  <rect class="feedback" x="940" y="260" width="215" height="190" rx="14"/>
+  <text x="965" y="298" class="table-title">patient_feedback</text>
+  <text x="965" y="335" class="key">feedback_id</text>
+  <text x="965" y="362" class="key">record_id</text>
+  <text x="965" y="389" class="field">rating</text>
+  <text x="965" y="416" class="field">feedback_message</text>
+  <text x="965" y="443" class="field">condition_update</text>
+  <text x="965" y="492" class="note">One record_id can have many feedback</text>
+
+  <!-- arrows -->
+  <path class="arrow" d="M380 240 C445 240, 468 310, 525 330"/>
+  <text x="425" y="245" class="label">patient_id</text>
+
+  <path class="arrow" d="M380 495 C455 495, 470 385, 525 335"/>
+  <text x="425" y="488" class="label">patient_id</text>
+
+  <path class="arrow" d="M865 350 C895 350, 910 350, 940 350"/>
+  <text x="878" y="333" class="label">record_id</text>
+
+  <!-- relationship notes -->
+  <rect class="table" x="100" y="625" width="1000" height="55" rx="12"/>
+  <text x="125" y="658" class="legend">
+    Relationship: one patient_id -> many record_id; one record_id -> many feedback_id.
+  </text>
+</svg>

@@ -1,0 +1,316 @@
+{
+  "project": "CareFlow",
+  "description": "Prototype test cases for patient check-in, risk analysis, queue prioritization, feedback alerts, and clinician actions.",
+  "result_type": "Simulated results based on the expected CareFlow prototype behavior. These values can be replaced with real execution results after live testing.",
+  "test_cases": [
+    {
+      "id": "TC-001",
+      "category": "Patient Check-in and Risk Analysis",
+      "title": "High-risk chest pain case",
+      "input": {
+        "patient_id": 1201,
+        "name": "Testing Patient One",
+        "age": 58,
+        "gender": "Male",
+        "symptoms": "Severe chest pain for 30 minutes with shortness of breath, sweating, and pain radiating to the left arm.",
+        "medical_history": "Hypertension and high cholesterol."
+      },
+      "expected_result": {
+        "ctas_level": "Level 1 or Level 2",
+        "risk_score_range": "8-10",
+        "queue": "Emergency Queue",
+        "status": "Waiting",
+        "clinical_summary_expected": "Patient has severe chest pain with shortness of breath and radiation to the left arm.",
+        "staff_action_expected": "Immediate clinical reassessment or emergency evaluation."
+      },
+      "actual_result": {
+        "ctas_level": "Level 1",
+        "risk_score": 10,
+        "queue": "Emergency Queue",
+        "status": "Waiting",
+        "notes": "The case was classified as high urgency because of chest pain, shortness of breath, sweating, and left arm radiation."
+      },
+      "pass": true
+    },
+    {
+      "id": "TC-002",
+      "category": "Patient Check-in and Risk Analysis",
+      "title": "Stroke-like symptoms case",
+      "input": {
+        "patient_id": 1202,
+        "name": "Testing Patient Two",
+        "age": 67,
+        "gender": "Female",
+        "symptoms": "Sudden weakness on the right side of the body, slurred speech, and facial drooping that started 20 minutes ago.",
+        "medical_history": "History of atrial fibrillation."
+      },
+      "expected_result": {
+        "ctas_level": "Level 1 or Level 2",
+        "risk_score_range": "8-10",
+        "queue": "Emergency Queue",
+        "status": "Waiting",
+        "clinical_summary_expected": "Patient reports acute neurological symptoms suggestive of a high-risk emergency.",
+        "staff_action_expected": "Immediate clinician review and urgent escalation."
+      },
+      "actual_result": {
+        "ctas_level": "Level 2",
+        "risk_score": 9,
+        "queue": "Emergency Queue",
+        "status": "Waiting",
+        "notes": "The case was escalated because sudden weakness, slurred speech, and facial drooping are red-flag neurological symptoms."
+      },
+      "pass": true
+    },
+    {
+      "id": "TC-003",
+      "category": "Patient Check-in and Risk Analysis",
+      "title": "Moderate fever and abdominal pain case",
+      "input": {
+        "patient_id": 1203,
+        "name": "Testing Patient Three",
+        "age": 34,
+        "gender": "Female",
+        "symptoms": "Fever for three days with worsening abdominal pain and repeated vomiting. Able to speak clearly but appears weak.",
+        "medical_history": "No major medical history."
+      },
+      "expected_result": {
+        "ctas_level": "Level 3",
+        "risk_score_range": "5-7",
+        "queue": "Normal Queue",
+        "status": "Waiting",
+        "clinical_summary_expected": "Patient has persistent fever, abdominal pain, vomiting, and weakness.",
+        "staff_action_expected": "Clinician evaluation with vital signs and possible lab work."
+      },
+      "actual_result": {
+        "ctas_level": "Level 3",
+        "risk_score": 6,
+        "queue": "Normal Queue",
+        "status": "Waiting",
+        "notes": "The case was treated as urgent but not immediately critical due to fever, abdominal pain, vomiting, and weakness."
+      },
+      "pass": true
+    },
+    {
+      "id": "TC-004",
+      "category": "Patient Check-in and Risk Analysis",
+      "title": "Mild respiratory symptoms case",
+      "input": {
+        "patient_id": 1204,
+        "name": "Testing Patient Four",
+        "age": 24,
+        "gender": "Male",
+        "symptoms": "Sore throat, mild cough, runny nose, and low-grade fever since yesterday. No shortness of breath. Able to drink fluids.",
+        "medical_history": "No known allergies or chronic illness."
+      },
+      "expected_result": {
+        "ctas_level": "Level 4 or Level 5",
+        "risk_score_range": "1-4",
+        "queue": "Non-Urgent Queue",
+        "status": "Waiting",
+        "clinical_summary_expected": "Patient has mild upper respiratory symptoms without red flags.",
+        "staff_action_expected": "Routine assessment when available."
+      },
+      "actual_result": {
+        "ctas_level": "Level 4",
+        "risk_score": 2,
+        "queue": "Non-Urgent Queue",
+        "status": "Waiting",
+        "notes": "The case was classified as less urgent because symptoms were mild and no breathing difficulty was reported."
+      },
+      "pass": true
+    },
+    {
+      "id": "TC-005",
+      "category": "Patient Check-in and Risk Analysis",
+      "title": "Mild skin rash case",
+      "input": {
+        "patient_id": 1205,
+        "name": "Testing Patient Five",
+        "age": 29,
+        "gender": "Female",
+        "symptoms": "Mild skin rash on both arms for two days. No fever, no swelling, no breathing difficulty, and no severe pain.",
+        "medical_history": "Seasonal allergies."
+      },
+      "expected_result": {
+        "ctas_level": "Level 5",
+        "risk_score_range": "1-3",
+        "queue": "Non-Urgent Queue",
+        "status": "Waiting",
+        "clinical_summary_expected": "Patient has mild rash without systemic symptoms or breathing issues.",
+        "staff_action_expected": "Non-urgent evaluation."
+      },
+      "actual_result": {
+        "ctas_level": "Level 5",
+        "risk_score": 1,
+        "queue": "Non-Urgent Queue",
+        "status": "Waiting",
+        "notes": "The case was classified as non-urgent because the rash was mild with no fever, swelling, breathing difficulty, or severe pain."
+      },
+      "pass": true
+    },
+    {
+      "id": "TC-006",
+      "category": "Queue Prioritization",
+      "title": "Emergency patient appears before non-urgent patient",
+      "input": {
+        "patients": [
+          {
+            "patient_id": 1201,
+            "ctas_level": 1,
+            "check_in_order": 2
+          },
+          {
+            "patient_id": 1204,
+            "ctas_level": 4,
+            "check_in_order": 1
+          }
+        ]
+      },
+      "expected_result": {
+        "first_patient_in_queue": 1201,
+        "reason": "Lower CTAS number has higher priority."
+      },
+      "actual_result": {
+        "first_patient_in_queue": 1201,
+        "notes": "The CTAS Level 1 patient was placed before the CTAS Level 4 patient even though the CTAS Level 4 patient checked in earlier."
+      },
+      "pass": true
+    },
+    {
+      "id": "TC-007",
+      "category": "Queue Prioritization",
+      "title": "Same CTAS level sorted by check-in time",
+      "input": {
+        "patients": [
+          {
+            "patient_id": 1210,
+            "ctas_level": 3,
+            "check_in_order": 1
+          },
+          {
+            "patient_id": 1211,
+            "ctas_level": 3,
+            "check_in_order": 2
+          }
+        ]
+      },
+      "expected_result": {
+        "first_patient_in_queue": 1210,
+        "reason": "Patients with the same CTAS level are sorted by earlier check-in time."
+      },
+      "actual_result": {
+        "first_patient_in_queue": 1210,
+        "notes": "Both patients had CTAS Level 3, so the earlier check-in was placed first."
+      },
+      "pass": true
+    },
+    {
+      "id": "TC-008",
+      "category": "Clinician Action",
+      "title": "Start consultation updates patient status",
+      "input": {
+        "action": "Start Consultation",
+        "initial_status": "Waiting"
+      },
+      "expected_result": {
+        "status": "In Consultation",
+        "patient_app_update": "Patient app shows In Consultation."
+      },
+      "actual_result": {
+        "status": "In Consultation",
+        "patient_app_update": "Patient app status updated to In Consultation after refresh.",
+        "notes": "Doctor dashboard action successfully changed the patient status."
+      },
+      "pass": true
+    },
+    {
+      "id": "TC-009",
+      "category": "Clinician Action",
+      "title": "Mark as completed removes patient from active queue",
+      "input": {
+        "action": "Mark as Completed",
+        "initial_status": "In Consultation"
+      },
+      "expected_result": {
+        "status": "Completed",
+        "active_queue_result": "Patient is removed from active queue.",
+        "patient_app_update": "Patient app shows Completed."
+      },
+      "actual_result": {
+        "status": "Completed",
+        "active_queue_result": "Patient was removed from the active queue and moved to completed history.",
+        "patient_app_update": "Patient app status updated to Completed after refresh.",
+        "notes": "The completed workflow worked as expected."
+      },
+      "pass": true
+    },
+    {
+      "id": "TC-010",
+      "category": "Feedback Alert Agent",
+      "title": "Worsening chest pain triggers alert",
+      "input": {
+        "patient_id": 1201,
+        "rating": "2 stars",
+        "feedback_message": "The waiting process is okay, but I am feeling worse now.",
+        "condition_update": "My chest pain is getting stronger and I feel short of breath."
+      },
+      "expected_result": {
+        "alert_required": true,
+        "alert_severity": "high",
+        "alert_reason_expected": "Possible deterioration with chest pain and shortness of breath.",
+        "database_table": "patient_feedback"
+      },
+      "actual_result": {
+        "alert_required": true,
+        "alert_severity": "high",
+        "alert_reason": "Patient reports worsening chest pain and shortness of breath, indicating possible deterioration.",
+        "notes": "The Feedback Alert Agent generated an alert and the doctor dashboard displayed the alert card."
+      },
+      "pass": true
+    },
+    {
+      "id": "TC-011",
+      "category": "Feedback Alert Agent",
+      "title": "Stable or improved condition does not trigger urgent alert",
+      "input": {
+        "patient_id": 1204,
+        "rating": "5 stars",
+        "feedback_message": "The queue information is clear.",
+        "condition_update": "I feel about the same and can wait."
+      },
+      "expected_result": {
+        "alert_required": false,
+        "alert_severity": "none",
+        "database_table": "patient_feedback"
+      },
+      "actual_result": {
+        "alert_required": false,
+        "alert_severity": "none",
+        "alert_reason": "No immediate clinical warning signs were detected in the feedback.",
+        "notes": "Feedback was saved without creating an urgent alert."
+      },
+      "pass": true
+    },
+    {
+      "id": "TC-012",
+      "category": "Database Integration",
+      "title": "Feedback links to current visit by record_id",
+      "input": {
+        "patient_id": 1201,
+        "current_visit_table": "healthcare_records",
+        "feedback_table": "patient_feedback"
+      },
+      "expected_result": {
+        "relationship": "patient_feedback.record_id links to healthcare_records.record_id",
+        "notes": "The feedback belongs to the current visit, not only to the patient identity."
+      },
+      "actual_result": {
+        "record_id_created": "Simulated record_id linked to patient_id 1201",
+        "feedback_id_created": "Simulated feedback_id linked to the current record_id",
+        "relationship_verified": true,
+        "notes": "Feedback was linked to the current visit through record_id, while patient identity remained connected through patient_id."
+      },
+      "pass": true
+    }
+  ]
+}
